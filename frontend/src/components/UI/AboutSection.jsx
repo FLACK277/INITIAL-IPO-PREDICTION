@@ -9,7 +9,7 @@ export default function AboutSection() {
     },
     {
       title: 'Neural Networks',
-      description: 'Deep learning model with 85% training accuracy and advanced regularization techniques',
+      description: 'Deep learning model with 90% training AUC and 74% validation accuracy with advanced regularization techniques',
       icon: '🧠',
     },
     {
