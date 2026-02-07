@@ -4,14 +4,35 @@
 
 ![Python](https://img.shields.io/badge/python-v3.8+-blue.svg)
 ![Machine Learning](https://img.shields.io/badge/ML-TensorFlow%20%7C%20Scikit--learn-orange)
+![React](https://img.shields.io/badge/React-18+-61DAFB.svg)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-009688.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Status](https://img.shields.io/badge/status-Active-brightgreen.svg)
 
-*Predicting IPO profitability using advanced machine learning techniques and ensemble methods*
+*Predicting IPO profitability using advanced machine learning techniques with a premium 3D web interface*
 
-[Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [Models](#-machine-learning-models) • [Results](#-results) • [Contributing](#-contributing)
+[Features](#-features) • [Web App](#-web-application) • [Installation](#-installation) • [Usage](#-usage) • [Models](#-machine-learning-models) • [API](#-api-documentation)
 
 </div>
+
+---
+
+## 🌐 Web Application
+
+This project now includes a **premium 3D web application** that provides an intuitive interface for IPO prediction with stunning visualizations!
+
+### Features
+- 🎨 **3D Interactive UI** - React Three Fiber powered 3D background with floating geometric shapes
+- 💎 **Glassmorphism Design** - Modern frosted glass UI cards with premium fintech aesthetics
+- 📊 **Real-time Predictions** - Instant IPO performance analysis with confidence scores
+- 📈 **Data Visualizations** - Interactive charts showing model performance and historical data
+- 🎯 **Investment Recommendations** - Clear BUY/HOLD/AVOID guidance based on AI analysis
+- ⚡ **Fast & Responsive** - Built with Vite for lightning-fast development and production builds
+
+### Tech Stack
+- **Frontend**: React 18 + Vite, React Three Fiber, Tailwind CSS, Framer Motion, Recharts
+- **Backend**: FastAPI + Uvicorn
+- **ML Models**: TensorFlow, Scikit-learn, Ensemble Methods
 
 ---
 
@@ -137,16 +158,111 @@ Our solution integrates diverse data sources and leverages advanced ML technique
 ### Prerequisites
 ```bash
 Python 3.8+
-pip or conda package manager
+Node.js 18+
+npm or yarn package manager
 ```
 
 ### Clone Repository
 ```bash
-git clone https://github.com/yourusername/ipo-prediction.git
-cd ipo-prediction
+git clone https://github.com/FLACK277/INITIAL-IPO-PREDICTION.git
+cd INITIAL-IPO-PREDICTION
 ```
 
-### Install Dependencies
+## 🌐 Web Application Setup
+
+### Backend Setup
+
+1. Navigate to the backend directory:
+```bash
+cd backend
+```
+
+2. Install Python dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+3. Place trained model files in the `/model` directory:
+   - `ipo_scaler.pkl`
+   - `ipo_selected_features.pkl`
+   - `ipo_model_ensemble.pkl`
+   - `ipo_model_neural_network.h5`
+
+   To generate these files, run the training script from the root directory:
+   ```bash
+   cd ..
+   python "ML model working.py"
+   # Then move the generated files to the model directory
+   mv ipo_*.pkl ipo_*.h5 model/
+   ```
+
+4. Start the backend server:
+```bash
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
+
+The API will be available at `http://localhost:8000`
+
+### Frontend Setup
+
+1. Navigate to the frontend directory:
+```bash
+cd frontend
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start the development server:
+```bash
+npm run dev
+```
+
+The web application will open at `http://localhost:5173`
+
+### Production Build
+
+To build the frontend for production:
+```bash
+cd frontend
+npm run build
+```
+
+The optimized build will be in the `dist` directory.
+
+## 💻 Usage
+
+### Web Application
+
+1. **Start the Backend**: Open a terminal and run:
+   ```bash
+   cd backend
+   uvicorn main:app --reload
+   ```
+
+2. **Start the Frontend**: Open another terminal and run:
+   ```bash
+   cd frontend
+   npm run dev
+   ```
+
+3. **Access the Application**: Open your browser and navigate to `http://localhost:5173`
+
+4. **Make Predictions**:
+   - Navigate to the "Predict" section
+   - Fill in the IPO details (issue size, price, subscription data)
+   - Click "Predict IPO Performance"
+   - View the detailed results including:
+     - Predicted profitability (PROFITABLE/NOT PROFITABLE)
+     - Confidence score
+     - Risk level assessment
+     - Expected listing gains
+     - Predicted opening price
+     - Investment recommendation
+
+### Command Line (Original)
 ```bash
 pip install -r requirements.txt
 ```
@@ -213,6 +329,144 @@ python src/predict.py --input single_ipo.json
 python src/predict.py --input batch_ipos.csv --output predictions.csv
 ```
 
+## 📡 API Documentation
+
+The backend provides a RESTful API for IPO prediction. The API is built with FastAPI and includes automatic interactive documentation.
+
+### Base URL
+```
+http://localhost:8000
+```
+
+### Interactive Documentation
+- **Swagger UI**: `http://localhost:8000/docs`
+- **ReDoc**: `http://localhost:8000/redoc`
+
+### Endpoints
+
+#### 1. Health Check
+```http
+GET /health
+```
+
+**Response:**
+```json
+{
+  "status": "healthy",
+  "models_loaded": true,
+  "available_models": ["Ensemble", "Neural Network"]
+}
+```
+
+#### 2. Model Information
+```http
+GET /model-info
+```
+
+**Response:**
+```json
+{
+  "models_loaded": true,
+  "available_models": ["Ensemble", "Neural Network"],
+  "num_features": 28,
+  "feature_names": ["Issue_Size", "Issue_Price", ...],
+  "model_performance": {
+    "Logistic Regression": {"auc": 0.7025, "accuracy": 0.656},
+    "Random Forest": {"auc": 0.6837, "accuracy": 0.688},
+    ...
+  }
+}
+```
+
+#### 3. Get Historical Data
+```http
+GET /historical-data
+```
+
+**Response:**
+```json
+{
+  "count": 326,
+  "data": [
+    {
+      "Date ": "03/02/10",
+      "IPOName": "Infinite Comp",
+      "Issue_Size": 189.8,
+      "Subscription_QIB": 48.44,
+      ...
+    }
+  ]
+}
+```
+
+#### 4. Predict IPO Performance
+```http
+POST /predict
+```
+
+**Request Body:**
+```json
+{
+  "ipo_name": "Example IPO Ltd",
+  "issue_size": 1000.0,
+  "issue_price": 250.0,
+  "subscription_qib": 5.5,
+  "subscription_hni": 3.2,
+  "subscription_rii": 2.8,
+  "subscription_total": 4.1
+}
+```
+
+**Response:**
+```json
+{
+  "ipo_name": "Example IPO Ltd",
+  "prediction": "PROFITABLE",
+  "probability": 0.78,
+  "confidence": 78.0,
+  "risk_level": "Low",
+  "predicted_listing_gain_percent": 25.5,
+  "predicted_opening_price": 312.75,
+  "recommendation": "Strong BUY",
+  "model_results": [
+    {
+      "model": "Ensemble",
+      "probability": 0.75,
+      "prediction": "PROFITABLE"
+    },
+    {
+      "model": "Neural Network",
+      "probability": 0.81,
+      "prediction": "PROFITABLE"
+    }
+  ],
+  "warning": null
+}
+```
+
+### Error Responses
+
+All endpoints return appropriate HTTP status codes:
+- `200`: Success
+- `400`: Bad Request (invalid input)
+- `404`: Not Found
+- `500`: Internal Server Error
+
+Error response format:
+```json
+{
+  "detail": "Error message describing what went wrong"
+}
+```
+
+### CORS Configuration
+
+The API is configured to accept requests from any origin during development. For production, update the CORS settings in `backend/main.py` to restrict allowed origins.
+
+### Mock Prediction Mode
+
+If model files are not present in the `/model` directory, the API will operate in mock prediction mode, using simple heuristics based on subscription data. A warning will be included in the response.
+
 ## 📈 Results
 
 ### Model Performance
@@ -247,6 +501,94 @@ IPO Prediction Results for MRF:
 - 🎪 Ensemble methods provided more robust predictions
 
 ## 📁 Project Structure
+
+```
+INITIAL-IPO-PREDICTION/
+├── 📊 Indian_IPO_Market_Data.csv    # Historical IPO dataset
+├── 🐍 ML model working.py            # Original ML training script
+├── 📖 README.md                      # This file
+│
+├── 🌐 frontend/                      # React Web Application
+│   ├── public/                       # Static assets
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── 3D/
+│   │   │   │   └── Background3D.jsx  # 3D scene with Three.js
+│   │   │   └── UI/
+│   │   │       ├── PredictionForm.jsx
+│   │   │       ├── PredictionResults.jsx
+│   │   │       ├── VisualizationSection.jsx
+│   │   │       ├── AboutSection.jsx
+│   │   │       └── LoadingSpinner.jsx
+│   │   ├── utils/
+│   │   │   └── api.js               # API configuration
+│   │   ├── App.jsx                  # Main app component
+│   │   ├── App.css
+│   │   ├── index.css                # Global styles with Tailwind
+│   │   └── main.jsx                 # Entry point
+│   ├── .env                         # Environment variables
+│   ├── package.json                 # Dependencies
+│   ├── vite.config.js               # Vite configuration
+│   ├── tailwind.config.js           # Tailwind CSS configuration
+│   └── postcss.config.js            # PostCSS configuration
+│
+├── 🔧 backend/                       # FastAPI Backend
+│   ├── main.py                      # FastAPI application
+│   └── requirements.txt             # Python dependencies
+│
+└── 🤖 model/                         # ML Model Files Directory
+    ├── README.md                    # Model setup instructions
+    ├── ipo_scaler.pkl              # (to be placed here)
+    ├── ipo_selected_features.pkl   # (to be placed here)
+    ├── ipo_model_ensemble.pkl      # (to be placed here)
+    └── ipo_model_neural_network.h5 # (to be placed here)
+```
+
+### Key Directories
+
+- **`frontend/`**: React application with 3D UI built using Vite, React Three Fiber, and Tailwind CSS
+- **`backend/`**: FastAPI server that loads ML models and provides prediction endpoints
+- **`model/`**: Directory for trained model files (.pkl and .h5 files)
+
+## 🎨 Screenshots
+
+The web application features:
+- **3D Landing Page**: Animated 3D background with floating geometric shapes and particle effects
+- **Prediction Interface**: Intuitive form with glassmorphism design for inputting IPO details
+- **Results Dashboard**: Animated cards displaying predictions, confidence scores, and recommendations
+- **Analytics Section**: Interactive charts showing model performance and historical IPO data
+- **About Section**: Detailed information about the ML models and methodology
+
+## 🔒 Security & Best Practices
+
+- ✅ Input validation on both frontend and backend
+- ✅ CORS configuration for secure API access
+- ✅ Environment variables for configuration
+- ✅ Error handling throughout the application
+- ✅ Mock prediction mode when models not available
+
+## 🚀 Deployment
+
+### Frontend Deployment
+The frontend can be deployed to:
+- **Vercel**: `vercel deploy`
+- **Netlify**: `netlify deploy --prod`
+- **GitHub Pages**: Build and deploy the `dist` folder
+
+### Backend Deployment
+The backend can be deployed to:
+- **Heroku**: Using Procfile with uvicorn
+- **AWS EC2**: Running uvicorn as a service
+- **Docker**: Containerize the backend application
+
+## 📝 Notes
+
+- The backend replicates the **exact feature engineering** from `ML model working.py` to ensure model compatibility
+- Model files must be generated by running the training script first
+- The application works in mock mode if model files are not present (with warnings)
+- All predictions are for informational purposes only - always do your own research before investing
+
+## 📁 Project Structure (Original)
 
 ```
 ipo-prediction/
