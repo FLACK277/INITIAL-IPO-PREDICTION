@@ -575,6 +575,12 @@ The frontend can be deployed to:
 - **Netlify**: `netlify deploy --prod`
 - **GitHub Pages**: Build and deploy the `dist` folder
 
+#### Deploy to Vercel (frontend only)
+1. The repository root includes `vercel.json`, so Vercel will automatically run `cd frontend && npm install && npm run build` and publish `frontend/dist`.
+2. In the Vercel dashboard, add an environment variable `VITE_API_URL` that points to your deployed backend (e.g., `https://your-backend.example.com`).
+3. Import the GitHub repository into Vercel and select **Deploy**. For local/CLI use, run `vercel --prod` from the repo root.
+4. Client-side routes are pre-configured to fall back to `index.html`, so deep links work without extra rewrites.
+
 ### Backend Deployment
 The backend can be deployed to:
 - **Heroku**: Using Procfile with uvicorn
