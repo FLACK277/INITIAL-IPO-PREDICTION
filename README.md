@@ -1,4 +1,4 @@
-# 🚀 PO Prediction using Machine Learning
+# 🚀 IPO Prediction using Machine Learning
 
 <div align="center">
 
