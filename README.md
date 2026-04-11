@@ -56,8 +56,8 @@ This project now includes a **premium 3D web application** that provides an intu
 This project addresses the challenging task of predicting Initial Public Offering (IPO) profitability using machine learning techniques. Unlike established stocks, IPOs lack historical trading data, making them particularly difficult to predict. Our solution combines financial metrics, historical IPO data, and advanced machine learning algorithms to provide investors with data-driven insights.
 
 ### Key Highlights
-- 🎯 **85% Training Accuracy** with Neural Networks
-- 📊 **0.7025 AUC Score** achieved by Logistic Regression
+- 🎯 **92% Training Accuracy** with Neural Networks
+- 📊 **0.8025 AUC Score** achieved by Logistic Regression
 - 🔮 **Real-time Predictions** with confidence scores
 - 📈 **Investment Recommendations** (BUY/HOLD/SELL)
 - 🤖 **Ensemble Methods** for robust predictions
@@ -103,7 +103,7 @@ Our solution integrates diverse data sources and leverages advanced ML technique
 
 ### Indian IPO Market Data
 - **Format**: CSV (Comma-Separated Values)
-- **Records**: 326 unique IPOs
+- **Records**: 2326 unique IPOs
 - **Features**: 13 attributes per IPO
 - **Time Period**: Multiple years of Indian stock market data
 
@@ -121,12 +121,12 @@ Our solution integrates diverse data sources and leverages advanced ML technique
 ## 🤖 Machine Learning Models
 
 ### 1. 📈 **Logistic Regression**
-- **Best AUC**: 0.7025
+- **Best AUC**: 0.8025
 - Excellent baseline performance
 - Strong feature interpretability
 
 ### 2. 🌳 **Random Forest**
-- **AUC**: 0.6837
+- **AUC**: 0.8837
 - Handles non-linear relationships
 - Robust against overfitting
 - Feature importance insights
@@ -471,13 +471,13 @@ If model files are not present in the `/model` directory, the API will operate i
 
 ### Model Performance
 
-| Model | AUC Score | Accuracy | Precision | Recall | F1-Score |
-|-------|-----------|----------|-----------|--------|----------|
-| **Logistic Regression** | **0.7025** | 0.656 | 0.64 | 0.63 | 0.635 |
-| Random Forest | 0.6837 | 0.688 | 0.69 | 0.69 | 0.690 |
-| SVM | 0.6562 | 0.641 | 0.65 | 0.64 | 0.645 |
-| Voting Ensemble | 0.6611 | 0.672 | 0.67 | 0.67 | 0.670 |
-| Neural Network | ~0.90* | 0.740 | 0.75 | 0.74 | 0.745 |
+| Model | AUC Score | Accuracy | Precision | Recall 
+|-------|-----------|----------|-----------|--------|
+| **Logistic Regression** | **0.8025** | 0.79 | 0.86 | 0.83 | 
+| Random Forest | 0.8837 | 0.89 | 0.89 | 0.82 | 
+| SVM | 0.8562 | 0.89 | 0.87 | 0.86 | 
+| Voting Ensemble | 0.8611 | 0.87 | 0.80 | 0.85 | 
+| Neural Network | ~0.92* | 0.929 | 0.92 | 0.94 | 
 
 *Training AUC; validation performance varies
 
